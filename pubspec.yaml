@@ -7,8 +7,14 @@ environment:
   sdk: ^3.11.0
 
 dependencies:
+  janray_flutter_kit:
+    git: 
+      url: git@github.com:JanrayCausaren/janray_flutter_kit.git
+      ref: v1.0.0
+
   flutter:
     sdk: flutter
+
     
 
 dev_dependencies:

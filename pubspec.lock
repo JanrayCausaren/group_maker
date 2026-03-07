@@ -67,6 +67,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  janray_flutter_kit:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "v1.0.0"
+      resolved-ref: "1124e27bcedbb8eb7610527314e780b67ac250e5"
+      url: "git@github.com:JanrayCausaren/janray_flutter_kit.git"
+    source: git
+    version: "0.0.1"
   leak_tracker:
     dependency: transitive
     description:
