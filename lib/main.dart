@@ -16,7 +16,6 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.light(brandColor: Colors.blue),
       darkTheme: AppTheme.dark(),
       themeMode: .system,
-      
     );
   }
 }

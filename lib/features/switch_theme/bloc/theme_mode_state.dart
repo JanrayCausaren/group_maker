@@ -1,6 +1,12 @@
 part of 'theme_mode_bloc.dart';
 
-@immutable
-sealed class ThemeModeState {}
+@freezed
+abstract class ThemeModeState with _$ThemeModeState {
+  const factory ThemeModeState({
+    required ThemeModeEnum themeMode,
+  }) = _ThemeModeState;
 
-final class ThemeModeInitial extends ThemeModeState {}
+   factory ThemeModeState.initial() => const _ThemeModeState(
+        themeMode: ThemeModeEnum.dark,
+      );
+}
