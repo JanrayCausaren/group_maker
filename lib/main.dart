@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_maker/core/routing/router.dart';
 import 'package:janray_flutter_kit/janray_flutter_kit.dart';
 
 void main() {
@@ -10,28 +11,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       theme: AppTheme.light(brandColor: Colors.blue),
       darkTheme: AppTheme.dark(),
       themeMode: .system,
-      home: const HomeScreen(),
+      
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){}),
-      appBar: AppBar(
-        backgroundColor: context.colors.success,
-        title: Text("Janray", style: context.displaySmall)),
-      body: const Column(children: [Center(child: Text('Hello World!'))]),
-    );
-  }
-}
