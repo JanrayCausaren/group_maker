@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:group_maker/core/routing/router.dart';
+import 'package:group_maker/dependencies/inject_dependencies.dart';
+import 'package:group_maker/features/switch_theme/bloc/theme_mode_bloc.dart';
+import 'package:group_maker/features/switch_theme/domain/theme_mode_enum.dart';
 import 'package:janray_flutter_kit/janray_flutter_kit.dart';
 
 void main() {
+  injectDependencies();
   runApp(const MainApp());
 }
 
@@ -11,13 +16,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-      theme: AppTheme.light(brandColor: Colors.blue),
-      darkTheme: AppTheme.dark(),
-      themeMode: .system,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => getIt<ThemeModeBloc>())],
+      child: BlocBuilder<ThemeModeBloc, ThemeModeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            routerConfig: router,
+            theme: AppTheme.light(brandColor: Colors.blue),
+            darkTheme: AppTheme.dark(),
+            themeMode: state.themeMode == ThemeModeEnum.light ? ThemeMode.light : ThemeMode.dark,
+          );
+        },
+      ),
     );
   }
 }
-
-

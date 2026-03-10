@@ -4,6 +4,7 @@ import 'package:group_maker/core/routing/routes.dart';
 import 'package:group_maker/features/classes_user/home_screen.dart';
 import 'package:group_maker/features/classes_user/main_layout.dart';
 import 'package:group_maker/features/groups/groups_screen.dart';
+import 'package:group_maker/features/profile/presentation/profile_screen.dart';
 
 final router = GoRouter(
   initialLocation: AppRoutes.home,
@@ -19,7 +20,6 @@ final router = GoRouter(
       },
       branches: [
         StatefulShellBranch(
-
           routes: [
             GoRoute(
               path: AppRoutes.home,
@@ -32,6 +32,14 @@ final router = GoRouter(
             GoRoute(
               path: AppRoutes.groups,
               builder: (context, state) => const GroupsScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.profile,
+              builder: (context, state) => const ProfileScreen(),
             ),
           ],
         ),
