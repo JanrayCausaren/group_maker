@@ -292,11 +292,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.0.0"
-      resolved-ref: "1124e27bcedbb8eb7610527314e780b67ac250e5"
+      ref: "v1.0.1"
+      resolved-ref: f74d103cf6e87b6fc59ac57f8bc554ed33ba623f
       url: "git@github.com:JanrayCausaren/janray_flutter_kit.git"
     source: git
-    version: "0.0.1"
+    version: "0.0.2"
   json_annotation:
     dependency: "direct main"
     description:

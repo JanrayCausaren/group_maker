@@ -10,7 +10,7 @@ dependencies:
   janray_flutter_kit:
     git:
       url: git@github.com:JanrayCausaren/janray_flutter_kit.git
-      ref: v1.0.0
+      ref: v1.0.1
 
   flutter:
     sdk: flutter
@@ -37,20 +37,20 @@ flutter:
   fonts:
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-Medium.ttf
+        - asset: assets/fonts/inter/Inter-Regular.ttf
+        - asset: assets/fonts/inter/Inter-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Inter-SemiBold.ttf
+        - asset: assets/fonts/inter/Inter-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/inter/Inter-Bold.ttf
           weight: 700
 
     - family: Nunito
       fonts:
-        - asset: assets/fonts/Nunito-Regular.ttf
-        - asset: assets/fonts/Nunito-Medium.ttf
+        - asset: assets/fonts/nunito/Nunito-Regular.ttf
+        - asset: assets/fonts/nunito/Nunito-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Nunito-SemiBold.ttf
+        - asset: assets/fonts/nunito/Nunito-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/Nunito-Bold.ttf
+        - asset: assets/fonts/nunito/Nunito-Bold.ttf
           weight: 700
