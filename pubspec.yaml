@@ -1,6 +1,6 @@
 name: group_maker
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   janray_flutter_kit:
-    git: 
+    git:
       url: git@github.com:JanrayCausaren/janray_flutter_kit.git
       ref: v1.0.0
 
@@ -20,8 +20,6 @@ dependencies:
   json_annotation: ^4.11.0
   get_it: ^9.2.1
 
-    
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -32,3 +30,27 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
