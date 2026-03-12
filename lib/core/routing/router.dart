@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:group_maker/core/routing/routes.dart';
-import 'package:group_maker/features/classes_user/home_screen.dart';
-import 'package:group_maker/features/classes_user/main_layout.dart';
+import 'package:group_maker/features/directories/directories_screen.dart';
+import 'package:group_maker/features/directories/home_screen.dart';
+import 'package:group_maker/features/directories/main_layout.dart';
 import 'package:group_maker/features/groups/groups_screen.dart';
 import 'package:group_maker/features/profile/presentation/profile_screen.dart';
 
@@ -31,15 +32,15 @@ final router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRoutes.classes,
-              builder: (context, state) => const HomeScreen(),
+              path: AppRoutes.directories,
+              builder: (context, state) => const DirectoriesScreen(),
             ),
           ],
         ),
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: AppRoutes.groups,
+              path: AppRoutes.segments,
               builder: (context, state) => const GroupsScreen(),
             ),
           ],

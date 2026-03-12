@@ -44,12 +44,14 @@ class MainApp extends StatelessWidget {
             routerConfig: router,
 
             theme: lightTheme.copyWith(
+              
               extensions: [
                 ...lightTheme.extensions.values,   
                 BrandColorsTheme.light(),
               ],
             ),
             darkTheme: darkTheme.copyWith(
+              
               extensions: [
                 ...darkTheme.extensions.values,
                 BrandColorsTheme.dark()],
