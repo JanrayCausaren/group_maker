@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:group_maker/app/config/assets_path.dart';
 import 'package:group_maker/core/theme/bottom_navigation_bar/brand_navigation_bar.dart';
 import 'package:group_maker/core/theme/bottom_navigation_bar/brand_navigation_bar_model.dart';
 
@@ -19,19 +20,19 @@ class MainLayout extends StatelessWidget {
         },
         items: [
           const BrandNavigationBarModel(
-            icon: Icons.home_outlined,
-            activeIcon: Icons.home_rounded,
+            icon: AssetsPath.iconHome,
+            activeIcon: AssetsPath.iconHomeFill,
             label: 'Home',
           ),
           const BrandNavigationBarModel(
-            icon: Icons.search_outlined,
-            activeIcon: Icons.search_rounded,
-            label: 'Classes',
+            icon: AssetsPath.iconDirectories,
+            activeIcon: AssetsPath.iconDirectoriesFill,
+            label: 'Directories',
           ),
           const BrandNavigationBarModel(
-            icon: Icons.bookmark_outline,
-            activeIcon: Icons.bookmark_rounded,
-            label: 'Groups',
+            icon:  AssetsPath.iconSegments,
+            activeIcon: AssetsPath.iconSegmentsFill,
+            label: 'Segments',
           ),
           const BrandNavigationBarModel(
             icon: Icons.person_outline,

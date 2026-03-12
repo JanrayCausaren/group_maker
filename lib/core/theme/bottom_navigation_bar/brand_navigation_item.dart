@@ -76,7 +76,6 @@ class BrandNavigationItemState extends State<BrandNavigationItem>
             curve: Curves.easeInOut,
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              
               borderRadius: BorderRadius.circular(20),
               color: widget.isActive
                   ? colors.primary.withAlpha(46)
@@ -107,8 +106,8 @@ class BrandNavigationItemState extends State<BrandNavigationItem>
                     duration: const Duration(milliseconds: 200),
                     transitionBuilder: (child, animation) =>
                         ScaleTransition(scale: animation, child: child),
-                    child: Icon(
-                      widget.isActive
+                    child: BrandIcon(
+                      iconData: widget.isActive
                           ? widget.item.activeIcon
                           : widget.item.icon,
                       key: ValueKey(widget.isActive),
@@ -117,6 +116,17 @@ class BrandNavigationItemState extends State<BrandNavigationItem>
                           ? colors.primary
                           : Colors.white.withAlpha(89),
                     ),
+
+                    //  Icon(
+                    //   widget.isActive
+                    //       ? widget.item.activeIcon
+                    //       : widget.item.icon,
+                    //   key: ValueKey(widget.isActive),
+                    //   size: 22,
+                    //   color: widget.isActive
+                    //       ? colors.primary
+                    //       : Colors.white.withAlpha(89),
+                    // ),
                   ),
                 ),
               ],
