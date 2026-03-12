@@ -20,7 +20,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final lightTheme = AppTheme.light(
       brandColor: Colors.blue,
-      textTheme: BrandTextTheme.applyBrandFont(
+      textTheme: BrandTextTheme.applyBrandFont(   
         base: AppTextTheme.light,
         bodyFont: 'Inter',
         headingFont: 'Nunito',
@@ -45,7 +45,7 @@ class MainApp extends StatelessWidget {
 
             theme: lightTheme.copyWith(
               extensions: [
-                ...lightTheme.extensions.values,
+                ...lightTheme.extensions.values,   
                 BrandColorsTheme.light(),
               ],
             ),

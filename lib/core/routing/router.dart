@@ -8,6 +8,7 @@ import 'package:group_maker/features/profile/presentation/profile_screen.dart';
 
 final router = GoRouter(
   initialLocation: AppRoutes.home,
+  debugLogDiagnostics: true,
   navigatorKey: GlobalKey<NavigatorState>(),
   redirect: (context, state) {
     // Implement your redirection logic here
@@ -23,6 +24,14 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.home,
+              builder: (context, state) => const HomeScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.classes,
               builder: (context, state) => const HomeScreen(),
             ),
           ],
