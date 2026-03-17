@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:group_maker/core/routing/routes.dart';
+import 'package:group_maker/features/directories/create_directory_screen.dart';
 import 'package:group_maker/features/directories/directories_screen.dart';
+import 'package:group_maker/features/directories/directory_details_screen.dart';
 import 'package:group_maker/features/directories/home_screen.dart';
 import 'package:group_maker/features/directories/main_layout.dart';
 import 'package:group_maker/features/groups/groups_screen.dart';
@@ -54,6 +56,23 @@ final router = GoRouter(
           ],
         ),
       ],
+    ),
+
+
+    // directories
+    GoRoute(
+      path: AppRoutes.directoriesDetails,
+      builder: (context, state) {
+        final id = state.pathParameters["id"];
+        return const DirectoryDetailsScreen();
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutes.createDirectory,
+      builder: (context, state) {
+        return const CreateDirectoryScreen();
+      },
     ),
   ],
 );
