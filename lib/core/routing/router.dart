@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:group_maker/core/routing/routes.dart';
-import 'package:group_maker/features/directories/create_directory_screen.dart';
-import 'package:group_maker/features/directories/directories_screen.dart';
-import 'package:group_maker/features/directories/directory_details_screen.dart';
-import 'package:group_maker/features/directories/home_screen.dart';
-import 'package:group_maker/features/directories/main_layout.dart';
+import 'package:group_maker/features/directories/presentation/create_directory_screen.dart';
+import 'package:group_maker/features/directories/presentation/directories_screen.dart';
+import 'package:group_maker/features/directories/presentation/directory_details_screen.dart';
+import 'package:group_maker/features/directories/presentation/home_screen.dart';
+import 'package:group_maker/core/ui/app_bottom_navigation.dart';
 import 'package:group_maker/features/groups/groups_screen.dart';
 import 'package:group_maker/features/profile/presentation/profile_screen.dart';
 
@@ -20,7 +20,7 @@ final router = GoRouter(
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return MainLayout(navigationShell: navigationShell);
+        return AppBottomNavigation(navigationShell: navigationShell);
       },
       branches: [
         StatefulShellBranch(
@@ -63,7 +63,7 @@ final router = GoRouter(
     GoRoute(
       path: AppRoutes.directoriesDetails,
       builder: (context, state) {
-        final id = state.pathParameters["id"];
+        // final id = state.pathParameters["id"];
         return const DirectoryDetailsScreen();
       },
     ),

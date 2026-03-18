@@ -88,55 +88,125 @@ class _CreateDirectoryScreenState extends State<CreateDirectoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F7FB),
-      appBar: AppBar(
-        backgroundColor: context.brandColors.surface,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-      ),
+      backgroundColor: context.brandColors.surface,
+
       body: Column(
         children: [
-          // ── Step Indicator ──
-          _StepIndicator(
-            currentStep: _currentStep,
-            totalSteps: _totalSteps,
-            labels: _stepLabels,
-          ),
-
-          // ── Step Content ──
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 280),
-              transitionBuilder: (child, animation) => FadeTransition(
-                opacity: animation,
-                child: SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(0.04, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                ),
-              ),
-              child: KeyedSubtree(
-                key: ValueKey(_currentStep),
-                child: _buildStepContent(),
+          // ── AppBar (manual, stays pinned naturally in Column) ──
+          Material(
+            color: context.brandColors.surface,
+            elevation: 0,
+            child: SafeArea(
+              bottom: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Close button row
+                  SizedBox(
+                    height: kToolbarHeight,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: () => Navigator.of(context).maybePop(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Step indicator — sizes itself naturally
+                  _StepIndicator(
+                    currentStep: _currentStep,
+                    totalSteps: _totalSteps,
+                    labels: _stepLabels,
+                  ),
+                ],
               ),
             ),
           ),
 
-          // ── Bottom Nav Bar ──
-          _StepNavBar(
-            currentStep: _currentStep,
-            totalSteps: _totalSteps,
-            isNextEnabled: _isCurrentStepValid,
-            onNext: _onNext,
-            onBack: _onBack,
+          // ── Scrollable content ──
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 280),
+                        transitionBuilder: (child, animation) => FadeTransition(
+                          opacity: animation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0.04, 0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        ),
+                        child: KeyedSubtree(
+                          key: ValueKey(_currentStep),
+                          child: _buildStepContent(),
+                        ),
+                      ),
+                      const Spacer(),
+                      _StepNavBar(
+                        currentStep: _currentStep,
+                        totalSteps: _totalSteps,
+                        isNextEnabled: _isCurrentStepValid,
+                        onNext: _onNext,
+                        onBack: _onBack,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  Column old_content() {
+    return Column(
+      children: [
+        // ── Step Indicator ──
+        _StepIndicator(
+          currentStep: _currentStep,
+          totalSteps: _totalSteps,
+          labels: _stepLabels,
+        ),
+
+        // ── Step Content ──
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 280),
+          transitionBuilder: (child, animation) => FadeTransition(
+            opacity: animation,
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0.04, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            ),
+          ),
+          child: KeyedSubtree(
+            key: ValueKey(_currentStep),
+            child: _buildStepContent(),
+          ),
+        ),
+        const Spacer(),
+
+        // ── Bottom Nav Bar ──
+        _StepNavBar(
+          currentStep: _currentStep,
+          totalSteps: _totalSteps,
+          isNextEnabled: _isCurrentStepValid,
+          onNext: _onNext,
+          onBack: _onBack,
+        ),
+      ],
     );
   }
 
@@ -160,6 +230,7 @@ class _CreateDirectoryScreenState extends State<CreateDirectoryScreen> {
     }
   }
 }
+
 
 // ─────────────────────────────────────────────
 // STEP INDICATOR WIDGET
@@ -240,23 +311,24 @@ class _StepIndicator extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 6),
-                  Text(
-                    labels[i],
-                    style: TextStyle(
-                      fontSize: context.labelSmall?.fontSize,
-                      fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
-                      color: isActive ? color : const Color(0xFFADB5C7),
-                    ),
-                  ),
+                      Text(
+                        labels[i],
+                        style: TextStyle(
+                          fontSize: context.labelSmall?.fontSize,
+                          fontWeight: isActive
+                              ? FontWeight.w700
+                              : FontWeight.w400,
+                          color: isActive ? color : const Color(0xFFADB5C7),
+                        ),
+                      ),
                     ],
                   ),
-                  
+
                   if (i < totalSteps - 1) const SizedBox(width: 12),
                 ],
               );
             }),
           ),
-          
         ],
       ),
     );
@@ -370,14 +442,14 @@ class _StepDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _StepHeader(
+          const _StepHeader(
             icon: Icons.folder_outlined,
             title: 'Directory Details',
             subtitle: 'Give your directory a name and optional description.',
           ),
           const SizedBox(height: 28),
 
-          _FieldLabel('Directory Name *'),
+          const _FieldLabel('Directory Name *'),
           const SizedBox(height: 8),
           TextField(
             controller: nameController,
@@ -390,7 +462,7 @@ class _StepDetails extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          _FieldLabel('Description'),
+          const _FieldLabel('Description'),
           const SizedBox(height: 8),
           TextField(
             controller: descController,
@@ -466,7 +538,7 @@ class _StepType extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _StepHeader(
+          const _StepHeader(
             icon: Icons.category_outlined,
             title: 'Directory Type',
             subtitle: 'Choose the access type that fits your use case.',
@@ -610,7 +682,7 @@ class _StepReview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _StepHeader(
+          const _StepHeader(
             icon: Icons.fact_check_outlined,
             title: 'Review & Confirm',
             subtitle: 'Double-check everything before creating the directory.',

@@ -4,10 +4,10 @@ import 'package:group_maker/app/config/assets_path.dart';
 import 'package:group_maker/core/theme/bottom_navigation_bar/brand_navigation_bar.dart';
 import 'package:group_maker/core/theme/bottom_navigation_bar/brand_navigation_bar_model.dart';
 
-class MainLayout extends StatelessWidget {
+class AppBottomNavigation extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
-  const MainLayout({super.key, required this.navigationShell});
+  const AppBottomNavigation({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
