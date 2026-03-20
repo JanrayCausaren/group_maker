@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:group_maker/core/contracts/directories_repository.dart';
+import 'package:group_maker/core/enums/enums.dart';
 import 'package:group_maker/features/directories/domain/entities/directory.dart';
 import 'package:group_maker/features/directories/presentation/create_directory_screen.dart';
 import 'package:uuid/uuid.dart';

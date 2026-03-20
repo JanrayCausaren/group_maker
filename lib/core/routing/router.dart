@@ -63,8 +63,8 @@ final router = GoRouter(
     GoRoute(
       path: AppRoutes.directoriesDetails,
       builder: (context, state) {
-        // final id = state.pathParameters["id"];
-        return const DirectoryDetailsScreen();
+        final id = state.pathParameters["id"]!;
+        return  DirectoryDetailsScreen(directoryId: id,);
       },
     ),
 
