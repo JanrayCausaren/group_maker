@@ -14,30 +14,63 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NewDirectoryEvent {
 
-
+ String get title; String? get description; DirectoryType get directoryType;
+/// Create a copy of NewDirectoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NewDirectoryEventCopyWith<NewDirectoryEvent> get copyWith => _$NewDirectoryEventCopyWithImpl<NewDirectoryEvent>(this as NewDirectoryEvent, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewDirectoryEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewDirectoryEvent&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.directoryType, directoryType));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,title,description,const DeepCollectionEquality().hash(directoryType));
 
 @override
 String toString() {
-  return 'NewDirectoryEvent()';
+  return 'NewDirectoryEvent(title: $title, description: $description, directoryType: $directoryType)';
 }
 
 
 }
 
 /// @nodoc
-class $NewDirectoryEventCopyWith<$Res>  {
-$NewDirectoryEventCopyWith(NewDirectoryEvent _, $Res Function(NewDirectoryEvent) __);
+abstract mixin class $NewDirectoryEventCopyWith<$Res>  {
+  factory $NewDirectoryEventCopyWith(NewDirectoryEvent value, $Res Function(NewDirectoryEvent) _then) = _$NewDirectoryEventCopyWithImpl;
+@useResult
+$Res call({
+ String title, String? description, DirectoryType directoryType
+});
+
+
+
+
+}
+/// @nodoc
+class _$NewDirectoryEventCopyWithImpl<$Res>
+    implements $NewDirectoryEventCopyWith<$Res> {
+  _$NewDirectoryEventCopyWithImpl(this._self, this._then);
+
+  final NewDirectoryEvent _self;
+  final $Res Function(NewDirectoryEvent) _then;
+
+/// Create a copy of NewDirectoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? description = freezed,Object? directoryType = freezed,}) {
+  return _then(_self.copyWith(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,directoryType: freezed == directoryType ? _self.directoryType : directoryType // ignore: cast_nullable_to_non_nullable
+as DirectoryType,
+  ));
+}
+
 }
 
 
@@ -55,11 +88,11 @@ extension NewDirectoryEventPatterns on NewDirectoryEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Submitted value)?  submitted,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Started() when started != null:
-return started(_that);case _:
+case _Submitted() when submitted != null:
+return submitted(_that);case _:
   return orElse();
 
 }
@@ -77,11 +110,11 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Submitted value)  submitted,}){
 final _that = this;
 switch (_that) {
-case _Started():
-return started(_that);case _:
+case _Submitted():
+return submitted(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +131,11 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Submitted value)?  submitted,}){
 final _that = this;
 switch (_that) {
-case _Started() when started != null:
-return started(_that);case _:
+case _Submitted() when submitted != null:
+return submitted(_that);case _:
   return null;
 
 }
@@ -119,10 +152,10 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String title,  String? description,  DirectoryType directoryType)?  submitted,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Started() when started != null:
-return started();case _:
+case _Submitted() when submitted != null:
+return submitted(_that.title,_that.description,_that.directoryType);case _:
   return orElse();
 
 }
@@ -140,10 +173,10 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String title,  String? description,  DirectoryType directoryType)  submitted,}) {final _that = this;
 switch (_that) {
-case _Started():
-return started();case _:
+case _Submitted():
+return submitted(_that.title,_that.description,_that.directoryType);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +193,10 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String title,  String? description,  DirectoryType directoryType)?  submitted,}) {final _that = this;
 switch (_that) {
-case _Started() when started != null:
-return started();case _:
+case _Submitted() when submitted != null:
+return submitted(_that.title,_that.description,_that.directoryType);case _:
   return null;
 
 }
@@ -174,62 +207,132 @@ return started();case _:
 /// @nodoc
 
 
-class _Started implements NewDirectoryEvent {
-  const _Started();
+class _Submitted implements NewDirectoryEvent {
+  const _Submitted({required this.title, this.description, required this.directoryType});
   
 
+@override final  String title;
+@override final  String? description;
+@override final  DirectoryType directoryType;
 
-
+/// Create a copy of NewDirectoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SubmittedCopyWith<_Submitted> get copyWith => __$SubmittedCopyWithImpl<_Submitted>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Submitted&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.directoryType, directoryType));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,title,description,const DeepCollectionEquality().hash(directoryType));
 
 @override
 String toString() {
-  return 'NewDirectoryEvent.started()';
+  return 'NewDirectoryEvent.submitted(title: $title, description: $description, directoryType: $directoryType)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$SubmittedCopyWith<$Res> implements $NewDirectoryEventCopyWith<$Res> {
+  factory _$SubmittedCopyWith(_Submitted value, $Res Function(_Submitted) _then) = __$SubmittedCopyWithImpl;
+@override @useResult
+$Res call({
+ String title, String? description, DirectoryType directoryType
+});
 
 
+
+
+}
+/// @nodoc
+class __$SubmittedCopyWithImpl<$Res>
+    implements _$SubmittedCopyWith<$Res> {
+  __$SubmittedCopyWithImpl(this._self, this._then);
+
+  final _Submitted _self;
+  final $Res Function(_Submitted) _then;
+
+/// Create a copy of NewDirectoryEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? description = freezed,Object? directoryType = freezed,}) {
+  return _then(_Submitted(
+title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,directoryType: freezed == directoryType ? _self.directoryType : directoryType // ignore: cast_nullable_to_non_nullable
+as DirectoryType,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$NewDirectoryState {
 
-
+ NewDirectoryStatus get status; String? get errorMessage;
+/// Create a copy of NewDirectoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$NewDirectoryStateCopyWith<NewDirectoryState> get copyWith => _$NewDirectoryStateCopyWithImpl<NewDirectoryState>(this as NewDirectoryState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewDirectoryState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewDirectoryState&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,status,errorMessage);
 
 @override
 String toString() {
-  return 'NewDirectoryState()';
+  return 'NewDirectoryState(status: $status, errorMessage: $errorMessage)';
 }
 
 
 }
 
 /// @nodoc
-class $NewDirectoryStateCopyWith<$Res>  {
-$NewDirectoryStateCopyWith(NewDirectoryState _, $Res Function(NewDirectoryState) __);
+abstract mixin class $NewDirectoryStateCopyWith<$Res>  {
+  factory $NewDirectoryStateCopyWith(NewDirectoryState value, $Res Function(NewDirectoryState) _then) = _$NewDirectoryStateCopyWithImpl;
+@useResult
+$Res call({
+ NewDirectoryStatus status, String? errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class _$NewDirectoryStateCopyWithImpl<$Res>
+    implements $NewDirectoryStateCopyWith<$Res> {
+  _$NewDirectoryStateCopyWithImpl(this._self, this._then);
+
+  final NewDirectoryState _self;
+  final $Res Function(NewDirectoryState) _then;
+
+/// Create a copy of NewDirectoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? errorMessage = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as NewDirectoryStatus,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
 }
 
 
@@ -247,11 +350,11 @@ extension NewDirectoryStatePatterns on NewDirectoryState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _NewDirectoryState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _:
+case _NewDirectoryState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -269,11 +372,11 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,}){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _NewDirectoryState value)  $default,){
 final _that = this;
 switch (_that) {
-case _Initial():
-return initial(_that);case _:
+case _NewDirectoryState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -290,11 +393,11 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _NewDirectoryState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _:
+case _NewDirectoryState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -311,10 +414,10 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( NewDirectoryStatus status,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _:
+case _NewDirectoryState() when $default != null:
+return $default(_that.status,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -332,10 +435,10 @@ return initial();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( NewDirectoryStatus status,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
-case _Initial():
-return initial();case _:
+case _NewDirectoryState():
+return $default(_that.status,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -352,10 +455,10 @@ return initial();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( NewDirectoryStatus status,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _:
+case _NewDirectoryState() when $default != null:
+return $default(_that.status,_that.errorMessage);case _:
   return null;
 
 }
@@ -366,33 +469,69 @@ return initial();case _:
 /// @nodoc
 
 
-class _Initial implements NewDirectoryState {
-  const _Initial();
+class _NewDirectoryState implements NewDirectoryState {
+  const _NewDirectoryState({this.status = NewDirectoryStatus.initial, this.errorMessage});
   
 
+@override@JsonKey() final  NewDirectoryStatus status;
+@override final  String? errorMessage;
 
-
+/// Create a copy of NewDirectoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$NewDirectoryStateCopyWith<_NewDirectoryState> get copyWith => __$NewDirectoryStateCopyWithImpl<_NewDirectoryState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewDirectoryState&&(identical(other.status, status) || other.status == status)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,status,errorMessage);
 
 @override
 String toString() {
-  return 'NewDirectoryState.initial()';
+  return 'NewDirectoryState(status: $status, errorMessage: $errorMessage)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$NewDirectoryStateCopyWith<$Res> implements $NewDirectoryStateCopyWith<$Res> {
+  factory _$NewDirectoryStateCopyWith(_NewDirectoryState value, $Res Function(_NewDirectoryState) _then) = __$NewDirectoryStateCopyWithImpl;
+@override @useResult
+$Res call({
+ NewDirectoryStatus status, String? errorMessage
+});
 
 
+
+
+}
+/// @nodoc
+class __$NewDirectoryStateCopyWithImpl<$Res>
+    implements _$NewDirectoryStateCopyWith<$Res> {
+  __$NewDirectoryStateCopyWithImpl(this._self, this._then);
+
+  final _NewDirectoryState _self;
+  final $Res Function(_NewDirectoryState) _then;
+
+/// Create a copy of NewDirectoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? errorMessage = freezed,}) {
+  return _then(_NewDirectoryState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as NewDirectoryStatus,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
 
 // dart format on

@@ -55,11 +55,12 @@ extension DirectoriesEventPatterns on DirectoriesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _Deleted value)?  deleted,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _Deleted() when deleted != null:
+return deleted(_that);case _:
   return orElse();
 
 }
@@ -77,11 +78,12 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _Deleted value)  deleted,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case _:
+return started(_that);case _Deleted():
+return deleted(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +100,12 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _Deleted value)?  deleted,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _Deleted() when deleted != null:
+return deleted(_that);case _:
   return null;
 
 }
@@ -119,10 +122,11 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String id)?  deleted,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _Deleted() when deleted != null:
+return deleted(_that.id);case _:
   return orElse();
 
 }
@@ -140,10 +144,11 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String id)  deleted,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case _:
+return started();case _Deleted():
+return deleted(_that.id);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +165,11 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String id)?  deleted,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _Deleted() when deleted != null:
+return deleted(_that.id);case _:
   return null;
 
 }
@@ -204,9 +210,75 @@ String toString() {
 
 
 /// @nodoc
+
+
+class _Deleted implements DirectoriesEvent {
+  const _Deleted(this.id);
+  
+
+ final  String id;
+
+/// Create a copy of DirectoriesEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DeletedCopyWith<_Deleted> get copyWith => __$DeletedCopyWithImpl<_Deleted>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Deleted&&(identical(other.id, id) || other.id == id));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id);
+
+@override
+String toString() {
+  return 'DirectoriesEvent.deleted(id: $id)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DeletedCopyWith<$Res> implements $DirectoriesEventCopyWith<$Res> {
+  factory _$DeletedCopyWith(_Deleted value, $Res Function(_Deleted) _then) = __$DeletedCopyWithImpl;
+@useResult
+$Res call({
+ String id
+});
+
+
+
+
+}
+/// @nodoc
+class __$DeletedCopyWithImpl<$Res>
+    implements _$DeletedCopyWith<$Res> {
+  __$DeletedCopyWithImpl(this._self, this._then);
+
+  final _Deleted _self;
+  final $Res Function(_Deleted) _then;
+
+/// Create a copy of DirectoriesEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? id = null,}) {
+  return _then(_Deleted(
+null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$DirectoriesState {
 
- List<Directory> get directories;
+ DirectoriesStatus get status; List<Directory> get directories; String? get errorMessage;
 /// Create a copy of DirectoriesState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -217,16 +289,16 @@ $DirectoriesStateCopyWith<DirectoriesState> get copyWith => _$DirectoriesStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DirectoriesState&&const DeepCollectionEquality().equals(other.directories, directories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DirectoriesState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.directories, directories)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(directories));
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(directories),errorMessage);
 
 @override
 String toString() {
-  return 'DirectoriesState(directories: $directories)';
+  return 'DirectoriesState(status: $status, directories: $directories, errorMessage: $errorMessage)';
 }
 
 
@@ -237,7 +309,7 @@ abstract mixin class $DirectoriesStateCopyWith<$Res>  {
   factory $DirectoriesStateCopyWith(DirectoriesState value, $Res Function(DirectoriesState) _then) = _$DirectoriesStateCopyWithImpl;
 @useResult
 $Res call({
- List<Directory> directories
+ DirectoriesStatus status, List<Directory> directories, String? errorMessage
 });
 
 
@@ -254,10 +326,12 @@ class _$DirectoriesStateCopyWithImpl<$Res>
 
 /// Create a copy of DirectoriesState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? directories = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? directories = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
-directories: null == directories ? _self.directories : directories // ignore: cast_nullable_to_non_nullable
-as List<Directory>,
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as DirectoriesStatus,directories: null == directories ? _self.directories : directories // ignore: cast_nullable_to_non_nullable
+as List<Directory>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -342,10 +416,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Directory> directories)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DirectoriesStatus status,  List<Directory> directories,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DirectoriesState() when $default != null:
-return $default(_that.directories);case _:
+return $default(_that.status,_that.directories,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -363,10 +437,10 @@ return $default(_that.directories);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Directory> directories)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DirectoriesStatus status,  List<Directory> directories,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _DirectoriesState():
-return $default(_that.directories);case _:
+return $default(_that.status,_that.directories,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -383,10 +457,10 @@ return $default(_that.directories);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Directory> directories)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DirectoriesStatus status,  List<Directory> directories,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _DirectoriesState() when $default != null:
-return $default(_that.directories);case _:
+return $default(_that.status,_that.directories,_that.errorMessage);case _:
   return null;
 
 }
@@ -398,9 +472,10 @@ return $default(_that.directories);case _:
 
 
 class _DirectoriesState implements DirectoriesState {
-  const _DirectoriesState({final  List<Directory> directories = const []}): _directories = directories;
+  const _DirectoriesState({this.status = DirectoriesStatus.initial, final  List<Directory> directories = const [], this.errorMessage}): _directories = directories;
   
 
+@override@JsonKey() final  DirectoriesStatus status;
  final  List<Directory> _directories;
 @override@JsonKey() List<Directory> get directories {
   if (_directories is EqualUnmodifiableListView) return _directories;
@@ -408,6 +483,7 @@ class _DirectoriesState implements DirectoriesState {
   return EqualUnmodifiableListView(_directories);
 }
 
+@override final  String? errorMessage;
 
 /// Create a copy of DirectoriesState
 /// with the given fields replaced by the non-null parameter values.
@@ -419,16 +495,16 @@ _$DirectoriesStateCopyWith<_DirectoriesState> get copyWith => __$DirectoriesStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DirectoriesState&&const DeepCollectionEquality().equals(other._directories, _directories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DirectoriesState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._directories, _directories)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_directories));
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_directories),errorMessage);
 
 @override
 String toString() {
-  return 'DirectoriesState(directories: $directories)';
+  return 'DirectoriesState(status: $status, directories: $directories, errorMessage: $errorMessage)';
 }
 
 
@@ -439,7 +515,7 @@ abstract mixin class _$DirectoriesStateCopyWith<$Res> implements $DirectoriesSta
   factory _$DirectoriesStateCopyWith(_DirectoriesState value, $Res Function(_DirectoriesState) _then) = __$DirectoriesStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Directory> directories
+ DirectoriesStatus status, List<Directory> directories, String? errorMessage
 });
 
 
@@ -456,10 +532,12 @@ class __$DirectoriesStateCopyWithImpl<$Res>
 
 /// Create a copy of DirectoriesState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? directories = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? directories = null,Object? errorMessage = freezed,}) {
   return _then(_DirectoriesState(
-directories: null == directories ? _self._directories : directories // ignore: cast_nullable_to_non_nullable
-as List<Directory>,
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as DirectoriesStatus,directories: null == directories ? _self._directories : directories // ignore: cast_nullable_to_non_nullable
+as List<Directory>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

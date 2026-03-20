@@ -6,9 +6,15 @@ import 'package:group_maker/core/theme/brand_text_theme.dart';
 import 'package:group_maker/dependencies/inject_dependencies.dart';
 import 'package:group_maker/features/switch_theme/bloc/theme_mode_bloc.dart';
 import 'package:group_maker/features/switch_theme/domain/theme_mode_enum.dart';
+import 'package:group_maker/hive_registrar.g.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:janray_flutter_kit/janray_flutter_kit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize Hive and register all generated type adapters
+  await Hive.initFlutter();
+  Hive.registerAdapters();
   injectDependencies();
   runApp(const MainApp());
 }
@@ -20,7 +26,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final lightTheme = AppTheme.light(
       brandColor: Colors.blue,
-      textTheme: BrandTextTheme.applyBrandFont(   
+      textTheme: BrandTextTheme.applyBrandFont(
         base: AppTextTheme.light,
         bodyFont: 'Inter',
         headingFont: 'Nunito',
@@ -44,17 +50,16 @@ class MainApp extends StatelessWidget {
             routerConfig: router,
 
             theme: lightTheme.copyWith(
-              
               extensions: [
-                ...lightTheme.extensions.values,   
+                ...lightTheme.extensions.values,
                 BrandColorsTheme.light(),
               ],
             ),
             darkTheme: darkTheme.copyWith(
-              
               extensions: [
                 ...darkTheme.extensions.values,
-                BrandColorsTheme.dark()],
+                BrandColorsTheme.dark(),
+              ],
             ),
             themeMode: state.themeMode == ThemeModeEnum.light
                 ? ThemeMode.light
