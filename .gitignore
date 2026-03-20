@@ -48,4 +48,4 @@ app.*.map.json
 .fvm/
 
 # Claude.md
-lib/CLAUDE.md
+CLAUDE.md

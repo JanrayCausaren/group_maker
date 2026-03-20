@@ -32,7 +32,7 @@ final router = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          routes: [
+          routes: [ 
             GoRoute(
               path: AppRoutes.directories,
               builder: (context, state) => const DirectoriesScreen(),
